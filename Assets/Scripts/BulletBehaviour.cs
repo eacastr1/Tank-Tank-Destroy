@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletBehaviour : MonoBehaviour
+public class BulletBehaviour : ProjectileBehaviour
 {
-    [SerializeField] private float speed;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +14,6 @@ public class BulletBehaviour : MonoBehaviour
     void Update()
     {
         MoveForward();
-    }
-
-    private void MoveForward()
-    {
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter(Collider other) 

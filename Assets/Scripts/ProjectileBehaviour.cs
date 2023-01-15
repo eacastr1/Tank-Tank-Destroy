@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossEnemy : CarEnemy
+public class ProjectileBehaviour : MonoBehaviour
 {
+    [SerializeField] protected float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -15,5 +16,10 @@ public class BossEnemy : CarEnemy
     void Update()
     {
         
+    }
+
+    protected void MoveForward()
+    {
+        transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 }

@@ -23,8 +23,8 @@ public abstract class Enemy : MonoBehaviour
     }
 
     // Target variables
-    private PlayerController playerController;
-    private Transform target;
+    protected PlayerController playerController;
+    protected Transform target;
 
     // Start is called before the first frame update
     void Awake()

@@ -33,7 +33,14 @@ public class GameManager : MonoBehaviour
 
         if(!myGameOver)
         {
-            spawnManager.SpawnWave();
+            if(spawnManager.waveCount % 5 == 0)
+            {
+                spawnManager.SpawnBoss();
+            }
+            else 
+            {
+                spawnManager.SpawnWave();
+            }
         }
     }
 

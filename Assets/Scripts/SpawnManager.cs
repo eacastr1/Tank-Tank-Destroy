@@ -4,12 +4,28 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] GameObject bossPrefab;
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] GameObject[] powerUpPrefabs;
     [SerializeField] int xRange;
     [SerializeField] int zRange;
     private int enemyCount;
-    private int waveCount;
+    private int myWaveCount;
+    public int waveCount
+    {
+        get { return myWaveCount; }
+        set
+        {
+            if(value < 0)
+            {
+                Debug.Log("You can't have a negative wave count!");
+            }
+            else 
+            {
+                myWaveCount = value;
+            }
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +36,15 @@ public class SpawnManager : MonoBehaviour
     void Update()
     {
         enemyCount = TrackEnemyCount();
+    }
+
+    public void SpawnBoss()
+    {
+        if(enemyCount == 0)
+        {
+            Instantiate(bossPrefab, bossPrefab.transform.position, bossPrefab.transform.rotation);
+            waveCount++;
+        }
     }
 
     public void SpawnWave()
