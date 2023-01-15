@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] GameObject[] enemyPrefabs;
+    [SerializeField] GameObject[] powerUpPrefabs;
     [SerializeField] int xRange;
     [SerializeField] int zRange;
     private int enemyCount;
@@ -13,17 +14,15 @@ public class SpawnManager : MonoBehaviour
     void Start()
     {
         waveCount = 1;
-        SpawnWave();
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyCount = TrackEnemyCount();
-        SpawnWave();
     }
 
-    void SpawnWave()
+    public void SpawnWave()
     {
         if(enemyCount == 0)
         {
@@ -34,27 +33,29 @@ public class SpawnManager : MonoBehaviour
                 Instantiate(enemy, GenerateRandomLocation(), enemy.transform.rotation);
             }
 
+            Instantiate(powerUpPrefabs[0], GenerateRandomLocation(), powerUpPrefabs[0].transform.rotation);
+
             waveCount++;
         }
     }
 
-    int TrackEnemyCount()
+    private int TrackEnemyCount()
     {
         return GameObject.FindGameObjectsWithTag("Enemy").Length;
     }
 
-    GameObject GenerateRandomEnemey()
+    private GameObject GenerateRandomEnemey()
     {
         int index = Random.Range(0, enemyPrefabs.Length);
 
         return enemyPrefabs[index];
     }
 
-    Vector3 GenerateRandomLocation()
+    private Vector3 GenerateRandomLocation()
     {
         int x = Random.Range(-xRange, xRange);
         int z = Random.Range(-zRange, zRange);
 
-        return new Vector3(x, 0, z);
+        return new Vector3(x, 1, z);
     }
 }

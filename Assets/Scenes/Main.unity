@@ -202,8 +202,10 @@ MonoBehaviour:
   - {fileID: 1312597050580498887, guid: 0a8f7251edbd78740b0a58d5f3c9a3be, type: 3}
   - {fileID: 6796506864464553416, guid: 9fcdc62201ec14c429f62443a9d6e550, type: 3}
   - {fileID: 4660688440093675067, guid: 3c86e8ec9b903164c8cb550f8daf0fe8, type: 3}
-  xRange: 45
-  zRange: 45
+  powerUpPrefabs:
+  - {fileID: 5338278901348287811, guid: 113dd912faaf561479ee9653acb4a646, type: 3}
+  xRange: 40
+  zRange: 25
 --- !u!1 &694811244
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,6 +407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 724938805}
+  - component: {fileID: 724938806}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -427,6 +430,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &724938806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724938804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a65c6ec586ca94438d05d4459b73d2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &858920747
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -617,7 +632,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 45, z: 0}
+  m_LocalPosition: {x: 0, y: 50, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -641,6 +656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7beee6c8bbce17946b3a39a6130a53e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHit: 0
   speed: 25
   turnSpeed: 100
   bulletPrefab: {fileID: 7848127812510354340, guid: ee9702ad8fa0e0b43ae94e2bba41d62b, type: 3}
@@ -653,7 +669,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1238182528}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.4149134, y: 3.8037806, z: 6.7103386}

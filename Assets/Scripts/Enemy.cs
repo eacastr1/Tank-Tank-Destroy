@@ -22,12 +22,14 @@ public abstract class Enemy : MonoBehaviour
         }
     }
 
-    // Target variable
+    // Target variables
+    private PlayerController playerController;
     private Transform target;
 
     // Start is called before the first frame update
     void Awake()
     {
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
         target = GameObject.Find("Player").transform;
     }
 
@@ -48,12 +50,13 @@ public abstract class Enemy : MonoBehaviour
         return (target.transform.position - transform.position).normalized;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnCollisionEnter(Collision other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Player is hit!");
             Destroy(gameObject);
+            playerController.isHit = true;
+            Debug.Log("Player is hit!");
         }
     }
 }

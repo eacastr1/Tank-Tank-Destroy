@@ -4,6 +4,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Game attributes
+    private GameManager gameManager;
+    // Player life attributes
+    private int myLives = 3;
+    public int lives
+    {
+        get { return myLives; }
+        set
+        {
+            if(value < 0)
+            {
+                Debug.Log("You can't have negative lives");
+            }
+            else if(value > 3)
+            {
+                Debug.Log("You can't have more than 3 lives");
+            }
+            else
+            {
+                myLives = value;
+            }
+        }
+    }
+    public bool isHit = false;
+
     // Player movement attributes
     [SerializeField] private float speed;
     [SerializeField] private float turnSpeed;
@@ -18,15 +43,19 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         aimController = GetComponent<AimController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        aimController.Aim();
-        Shoot();
-        Move();
+        if(LifeCheck() == false)
+        {
+            aimController.Aim();
+            Shoot();
+            Move();   
+        }
     }
 
     private void Move() 
@@ -44,5 +73,21 @@ public class PlayerController : MonoBehaviour
         {
             Instantiate(bulletPrefab, bulletSpawn.position, aimController.GetCannonRotation());
         }
+    }
+
+    private bool LifeCheck()
+    {
+        if(isHit)
+        {  
+            lives--;
+            isHit = false;
+            Debug.Log("Player Lives: " + lives);
+        }
+        if(lives == 0)
+        {
+            gameManager.gameOver = true;
+        }
+
+        return gameManager.gameOver;
     }
 }

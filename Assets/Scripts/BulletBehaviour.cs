@@ -18,12 +18,12 @@ public class BulletBehaviour : MonoBehaviour
         MoveForward();
     }
 
-    void MoveForward()
+    private void MoveForward()
     {
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
-    void OnTriggerEnter(Collider other) 
+    private void OnTriggerEnter(Collider other) 
     {
         if(other.gameObject.CompareTag("Enemy"))
         {
