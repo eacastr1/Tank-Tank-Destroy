@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MissileBehaviour : ProjectileBehaviour
+public class MissileBehaviour : Projectile
 {
     [SerializeField] private float radius = 4.0f;
     

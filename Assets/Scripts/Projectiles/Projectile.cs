@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Projectile : MonoBehaviour
 {
-    [SerializeField] float speed;
+    [SerializeField] protected float speed;
 
     protected void MoveForward()
     {
