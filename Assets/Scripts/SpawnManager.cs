@@ -59,7 +59,9 @@ public class SpawnManager : MonoBehaviour
                 GameObject enemy = EnemyPoolManager.GetEnemy(GenerateRandomLocation(), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f));
             }
 
-            Instantiate(powerUpPrefabs[0], GenerateRandomLocation(), powerUpPrefabs[0].transform.rotation);
+            if(TrackPowerupCount() < 3) {
+                Instantiate(powerUpPrefabs[0], GenerateRandomLocation(), powerUpPrefabs[0].transform.rotation);
+            }
 
             if(waveCount < 10) {
                 waveCount++;
@@ -70,6 +72,11 @@ public class SpawnManager : MonoBehaviour
     private int TrackEnemyCount()
     {
         return GameObject.FindGameObjectsWithTag("Enemy").Length;
+    }
+
+    private int TrackPowerupCount()
+    {
+        return GameObject.FindGameObjectsWithTag("Powerup").Length;
     }
 
     private Vector3 GenerateRandomLocation()
