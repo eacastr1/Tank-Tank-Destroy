@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     // Game attributes
     private GameManager gameManager;
+    private ShellPoolManager shellPoolManager;
     // Player life attributes
     private int myLives = 3;
     public int lives
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        shellPoolManager = ShellPoolManager.Instance;
         aimController = GetComponent<AimController>();
     }
 
@@ -71,7 +73,8 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
-            Instantiate(bulletPrefab, bulletSpawn.position, aimController.GetCannonRotation());
+            //Instantiate(bulletPrefab, bulletSpawn.position, aimController.GetCannonRotation());
+            GameObject shell = shellPoolManager.GetShell(bulletSpawn.position, aimController.GetCannonRotation());
         }
     }
 

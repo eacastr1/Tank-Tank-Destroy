@@ -1,24 +1,13 @@
-// Function class
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DestroyOutOfBounds : MonoBehaviour
+public class OutOfBounds : MonoBehaviour
 {
     private int xRange = 45;
     private int zRange = 45;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(CheckConstraints())
-        {
-            Destroy(gameObject);
-        }
-    }
-
-    private bool CheckConstraints()
+    public bool CheckConstraints()
     {
         if(transform.position.z > zRange)
         {
@@ -28,7 +17,6 @@ public class DestroyOutOfBounds : MonoBehaviour
         {
             return true;
         }
-    
         if(transform.position.x > xRange)
         {
             return true;

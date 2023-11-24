@@ -59,4 +59,9 @@ public abstract class Enemy : MonoBehaviour
             Debug.Log("Player is hit!");
         }
     }
+
+    void Death()
+    {
+        
+    }
 }
