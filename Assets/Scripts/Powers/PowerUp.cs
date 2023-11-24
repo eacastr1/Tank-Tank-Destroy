@@ -17,7 +17,7 @@ public abstract class PowerUp : MonoBehaviour
         transform.Rotate(Vector3.up, spinSpeed * Time.deltaTime);
     }
 
-    void OnCollisionEnter(Collision other)
+    void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
