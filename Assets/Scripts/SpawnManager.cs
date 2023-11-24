@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    private EnemyPoolManager EnemyPoolManager;
+
     [SerializeField] GameObject bossPrefab;
     [SerializeField] GameObject[] enemyPrefabs;
     [SerializeField] GameObject[] powerUpPrefabs;
@@ -29,6 +31,7 @@ public class SpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        EnemyPoolManager = EnemyPoolManager.Instance;
         waveCount = 1;
     }
 
@@ -53,27 +56,20 @@ public class SpawnManager : MonoBehaviour
         {
             for(int i = 0; i < waveCount; i++)
             {
-                GameObject enemy = GenerateRandomEnemey();
-
-                Instantiate(enemy, GenerateRandomLocation(), enemy.transform.rotation);
+                GameObject enemy = EnemyPoolManager.GetEnemy(GenerateRandomLocation(), new Quaternion(0.0f, 0.0f, 0.0f, 1.0f));
             }
 
             Instantiate(powerUpPrefabs[0], GenerateRandomLocation(), powerUpPrefabs[0].transform.rotation);
 
-            waveCount++;
+            if(waveCount < 10) {
+                waveCount++;
+            }
         }
     }
 
     private int TrackEnemyCount()
     {
         return GameObject.FindGameObjectsWithTag("Enemy").Length;
-    }
-
-    private GameObject GenerateRandomEnemey()
-    {
-        int index = Random.Range(0, enemyPrefabs.Length);
-
-        return enemyPrefabs[index];
     }
 
     private Vector3 GenerateRandomLocation()

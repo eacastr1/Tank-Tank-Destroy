@@ -54,14 +54,14 @@ public abstract class Enemy : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Death();
             playerController.isHit = true;
             Debug.Log("Player is hit!");
         }
     }
 
-    void Death()
+    public void Death()
     {
-        
+        gameObject.SetActive(false);
     }
 }

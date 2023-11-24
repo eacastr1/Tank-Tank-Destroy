@@ -22,7 +22,7 @@ public class Shell : Projectile
         if(other.gameObject.CompareTag("Enemy"))
         {
             gameObject.SetActive(false);
-            // other.gameObject.Enemy.Death();(?)
+            other.gameObject.GetComponent<Enemy>().Death();
         }
     }
 }
