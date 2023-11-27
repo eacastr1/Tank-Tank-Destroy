@@ -86,4 +86,9 @@ public class SpawnManager : MonoBehaviour
 
         return new Vector3(x, 1, z);
     }
+    
+    public int GetEnemyCount()
+    {
+        return enemyCount;
+    }
 }

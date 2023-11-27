@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
 
         if(!myGameOver)
         {
+            // spawnManager.SpawnBoss();
             spawnManager.SpawnWave();
         }
     }
