@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     // Game attributes
     private GameManager gameManager;
     private ShellPoolManager shellPoolManager;
+    // Player attributes
+    public AudioSource playerAudio;
+    public AudioClip shootSound;
     // Player life attributes
     private int myLives = 3;
     public int lives
@@ -46,6 +49,7 @@ public class PlayerController : MonoBehaviour
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         shellPoolManager = ShellPoolManager.Instance;
+        playerAudio = GetComponent<AudioSource>();
         aimController = GetComponent<AimController>();
     }
 
@@ -73,6 +77,7 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
+            playerAudio.PlayOneShot(shootSound);
             //Instantiate(bulletPrefab, bulletSpawn.position, aimController.GetCannonRotation());
             GameObject shell = shellPoolManager.GetShell(bulletSpawn.position, aimController.GetCannonRotation());
         }
