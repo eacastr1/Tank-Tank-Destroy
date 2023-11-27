@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
             aimController.Aim();
             Shoot();
             Move();   
+            gameManager.UpdateLives(myLives);
         }
     }
 

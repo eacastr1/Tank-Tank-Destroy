@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
+    // UI attributes 
+    private int score;
+    private int lives;
+    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI livesText;
     // Game attributes
     private bool myGameOver;
     public bool gameOver
@@ -25,6 +30,7 @@ public class GameManager : MonoBehaviour
     {
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        UpdateScore(0);
     }
 
     // Update is called once per frame
@@ -35,6 +41,18 @@ public class GameManager : MonoBehaviour
         {
             spawnManager.SpawnWave();
         }
+    }
+
+    public void UpdateScore(int scoreToAdd) 
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score;
+    }
+
+    public void UpdateLives(int livesToAdd)
+    {
+        lives = livesToAdd;
+        livesText.text = "Lives: " + lives;
     }
 
     void StartGame()

@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class Shell : Projectile
 {
+    [SerializeField] private GameManager manager;
+
+    void Start()
+    {
+        manager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,6 +29,7 @@ public class Shell : Projectile
         if(other.gameObject.CompareTag("Enemy"))
         {
             gameObject.SetActive(false);
+            manager.UpdateScore(5);
             other.gameObject.GetComponent<Enemy>().Death();
         }
     }
