@@ -62,6 +62,8 @@ public class PlayerController : MonoBehaviour
             Shoot();
             Move();   
             gameManager.UpdateLives(myLives);
+        } else {
+            gameManager.GameOver();
         }
     }
 

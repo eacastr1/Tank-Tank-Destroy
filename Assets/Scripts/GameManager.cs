@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +11,8 @@ public class GameManager : MonoBehaviour
     private int lives;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI livesText;
+    public TextMeshProUGUI gameOverText;
+    public Button restartButton;
     // Game attributes
     private bool myGameOver;
     public bool gameOver
@@ -30,6 +34,8 @@ public class GameManager : MonoBehaviour
     {
         spawnManager = GameObject.Find("Spawn Manager").GetComponent<SpawnManager>();
         playerController = GameObject.Find("Player").GetComponent<PlayerController>();
+        gameOverText.gameObject.SetActive(false);
+        restartButton.gameObject.SetActive(false);
         UpdateScore(0);
     }
 
@@ -56,14 +62,16 @@ public class GameManager : MonoBehaviour
         livesText.text = "Lives: " + lives;
     }
 
-    void StartGame()
+    public void RestartGame()
     {
-
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    void GameOver()
+    public void GameOver()
     {
-        
+        myGameOver = true;
+        gameOverText.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(true);
     }
     
 }
