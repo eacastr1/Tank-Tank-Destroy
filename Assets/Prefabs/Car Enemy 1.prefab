@@ -285,6 +285,7 @@ MonoBehaviour:
   explosionParticle: {fileID: 543379942901886437}
   enemyAudio: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
+  crashSound: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
   carType: 1
 --- !u!82 &-2374338309119969299
 AudioSource:

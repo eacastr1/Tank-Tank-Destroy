@@ -8,6 +8,7 @@ public abstract class Enemy : MonoBehaviour
 
     public AudioSource enemyAudio;
     public AudioClip deathSound;
+    public AudioClip crashSound;
 
     // Enemy attributes
     private bool isDead = false;
@@ -75,6 +76,7 @@ public abstract class Enemy : MonoBehaviour
         if(other.gameObject.CompareTag("Player") && isDead == false)
         {
             Death();
+            enemyAudio.PlayOneShot(crashSound);
             playerController.isHit = true;
             Debug.Log("Player is hit!");
         }
