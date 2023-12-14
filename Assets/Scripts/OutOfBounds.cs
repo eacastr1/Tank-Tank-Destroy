@@ -5,7 +5,7 @@ using UnityEngine;
 public class OutOfBounds : MonoBehaviour
 {
     private int xRange = 45;
-    private int zRange = 45;
+    private int zRange = 25;
 
     public bool CheckConstraints()
     {

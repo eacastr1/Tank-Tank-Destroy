@@ -4,15 +4,15 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {  
-    public ParticleSystem explosionParticle;
+    [SerializeField] private ParticleSystem explosionParticle;
 
-    public AudioSource enemyAudio;
-    public AudioClip deathSound;
-    public AudioClip crashSound;
+    [SerializeField] private AudioSource enemyAudio;
+    [SerializeField] private AudioClip deathSound;
+    [SerializeField] private AudioClip crashSound;
 
     // Enemy attributes
-    private bool isDead = false;
-    private float mySpeed = 0.0f;
+    protected bool isDead = false;
+    protected float mySpeed = 0.0f;
     public float Speed 
     {
         get { return mySpeed; }
@@ -42,31 +42,18 @@ public abstract class Enemy : MonoBehaviour
         //enemyAudio = GetComponent<AudioSource>();
     }
 
-    void Start()
-    {
-        
-    }
-
     void OnEnable()
     {
         isDead = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(isDead == false) {
-            FollowPlayer();
-        }
-    }
-
-    private void FollowPlayer() 
+    protected void FollowPlayer() 
     {
         transform.position += GetDistanceFromPlayer() * mySpeed * Time.deltaTime;
         transform.LookAt(target);
     }
 
-    private Vector3 GetDistanceFromPlayer()
+    protected Vector3 GetDistanceFromPlayer()
     {
         return (target.transform.position - transform.position).normalized;
     }

@@ -22,8 +22,15 @@ public class CarEnemy : Enemy
                 Speed = 9.0f;
                 break;
             case CarType.Boss:
-                Speed = 7.0f;
+                Speed = 15.0f;
                 break;
+        }
+    }
+
+    void Update()
+    {
+        if(isDead == false) {
+            FollowPlayer();
         }
     }
 }

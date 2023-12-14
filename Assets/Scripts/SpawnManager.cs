@@ -43,11 +43,8 @@ public class SpawnManager : MonoBehaviour
 
     public void SpawnBoss()
     {
-        if(enemyCount == 0)
-        {
-            Instantiate(bossPrefab, bossPrefab.transform.position, bossPrefab.transform.rotation);
-            waveCount++;
-        }
+        Instantiate(bossPrefab, bossPrefab.transform.position, bossPrefab.transform.rotation);
+        waveCount++;
     }
 
     public void SpawnWave()
@@ -61,6 +58,11 @@ public class SpawnManager : MonoBehaviour
 
             if(TrackPowerupCount() < 3) {
                 Instantiate(powerUpPrefabs[0], GenerateRandomLocation(), powerUpPrefabs[0].transform.rotation);
+            }
+
+            if(waveCount % 5 == 0) 
+            {
+                SpawnBoss();
             }
 
             if(waveCount < 10) {

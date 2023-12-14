@@ -470,6 +470,7 @@ GameObject:
   - component: {fileID: 3870063264652213547}
   - component: {fileID: 3870063264652213546}
   - component: {fileID: 3870063264652213549}
+  - component: {fileID: 7323747437988746543}
   - component: {fileID: 1941626524585844768}
   m_Layer: 0
   m_Name: Boss Enemy
@@ -580,7 +581,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3870063264652316713}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -636,11 +637,24 @@ MonoBehaviour:
   enemyAudio: {fileID: 0}
   deathSound: {fileID: 0}
   crashSound: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
-  carType: 1
+  carType: 3
+  force: 10
   missile: {fileID: 3885397277912055744, guid: 265b0d1a8eead48498592f91ad8d3494, type: 3}
   bomb: {fileID: 0}
   missileSpawn: {fileID: 3870063263812741989}
   bombSpawn: {fileID: 0}
+--- !u!114 &7323747437988746543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3870063264652316713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3369ceb2ad4a0c5469b77e0ab69ecd19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!82 &1941626524585844768
 AudioSource:
   m_ObjectHideFlags: 0

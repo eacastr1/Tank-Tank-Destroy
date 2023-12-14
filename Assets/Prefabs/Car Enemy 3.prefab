@@ -243,7 +243,7 @@ MonoBehaviour:
   enemyAudio: {fileID: 0}
   deathSound: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
   crashSound: {fileID: 8300000, guid: 774ebc5c074ce4695b7cc310fbd44087, type: 3}
-  carType: 0
+  carType: 1
 --- !u!82 &2533534681779878697
 AudioSource:
   m_ObjectHideFlags: 0

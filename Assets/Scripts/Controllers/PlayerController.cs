@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Player Vehicle Script
+    [SerializeField] PlayerVehicle vehicle;
     // Game attributes
-    private GameManager gameManager;
-    private ShellPoolManager shellPoolManager;
+    [SerializeField] GameManager gameManager;
+    [SerializeField] ShellPoolManager shellPoolManager;
     // Player attributes
-    public AudioSource playerAudio;
-    public AudioClip shootSound;
+    [SerializeField] AudioSource playerAudio;
+    [SerializeField] AudioClip shootSound;
+    [SerializeField] AimController aimController;
     // Player life attributes
-    private int myLives = 3;
+    [SerializeField] int myLives = 3;
     public int lives
     {
         get { return myLives; }
@@ -33,24 +36,13 @@ public class PlayerController : MonoBehaviour
     }
     public bool isHit = false;
 
-    // Player movement attributes
-    [SerializeField] private float speed;
-    [SerializeField] private float turnSpeed;
-
-    // Player aiming reference
-    private AimController aimController;
-
-    // Player shooting variables
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private Transform bulletSpawn;
-
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        shellPoolManager = ShellPoolManager.Instance;
         playerAudio = GetComponent<AudioSource>();
         aimController = GetComponent<AimController>();
+        vehicle = GetComponent<PlayerVehicle>();
     }
 
     // Update is called once per frame
@@ -60,20 +52,20 @@ public class PlayerController : MonoBehaviour
         {
             aimController.Aim();
             Shoot();
-            Move();   
+            ControlVehicle();   
             gameManager.UpdateLives(myLives);
         } else {
             gameManager.GameOver();
         }
     }
 
-    private void Move() 
+    private void ControlVehicle() 
     {
         float verticalInput = Input.GetAxis("Vertical");
-        transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
-
         float horizontalInput = Input.GetAxis("Horizontal");
-        transform.Rotate(Vector3.up, horizontalInput * turnSpeed * Time.deltaTime);
+
+        vehicle.MoveForward(verticalInput);
+        vehicle.Rotate(horizontalInput);
     }
 
     private void Shoot()
@@ -81,8 +73,7 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0))
         {
             playerAudio.PlayOneShot(shootSound);
-            //Instantiate(bulletPrefab, bulletSpawn.position, aimController.GetCannonRotation());
-            GameObject shell = shellPoolManager.GetShell(bulletSpawn.position, aimController.GetCannonRotation());
+            GameObject shell = vehicle.GetShell(aimController.GetCannonRotation());
         }
     }
 
